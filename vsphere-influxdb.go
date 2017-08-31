@@ -492,6 +492,10 @@ func (vcenter *VCenter) Query(config Configuration, InfluxDBClient influxclient.
 		errlog.Println("Error: ", err)
 		return
 	}
+	
+	if debug == true {
+		spew.Dump(queries)
+	}
 
 	// Get the result
 	vcName := strings.Replace(vcenter.Hostname, config.Domain, "", -1)
@@ -506,6 +510,10 @@ func (vcenter *VCenter) Query(config Configuration, InfluxDBClient influxclient.
 		return
 	}
 
+	if debug == true {
+		spew.Dump(perfres.Returnval)
+	}
+	
 	for _, base := range perfres.Returnval {
 		pem := base.(*types.PerfEntityMetric)
 		stdlog.Println(pem)

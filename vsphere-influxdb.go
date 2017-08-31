@@ -507,8 +507,8 @@ func (vcenter *VCenter) Query(config Configuration, InfluxDBClient influxclient.
 	}
 
 	for _, base := range perfres.Returnval {
-		stdlog.Println(pem)
 		pem := base.(*types.PerfEntityMetric)
+		stdlog.Println(pem)
 		entityName := strings.ToLower(pem.Entity.Type)
 		name := strings.ToLower(strings.Replace(morToName[pem.Entity], config.Domain, "", -1))
 
